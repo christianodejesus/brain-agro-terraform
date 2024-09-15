@@ -1,0 +1,34 @@
+[
+  {
+    "name": "db-migrate",
+    "image": "${image}",
+    "command": ["npx", "prisma", "migrate", "reset", "--force"],
+    "memory": 300,
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log_group}",
+        "awslogs-region": "${region}",
+        "awslogs-stream-prefix": "db_migrate"
+      }
+    },
+    "environment": [
+      {
+        "name": "NODE_ENV",
+        "value": "${node_env}"
+      },
+      {
+        "name": "DATABASE_URL",
+        "value": "${database_url}"
+      },
+      {
+        "name": "APP_NAME",
+        "value": "${app_name}"
+      },
+      {
+        "name": "PORT",
+        "value": "3000"
+      }
+    ]
+  }
+]
